@@ -1,0 +1,23 @@
+jobs:
+  - name: Count_Discount_Data
+    conf:
+      spark.cassandra.connection.host: intseed.yagnaiq.com
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: 8XDEN92pzbgpisM54+kQBWZWQE
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test 
+          table: discount
+
+    transform:
+      - debug: 
+          action: count
+
+      - filterExpression:
+          expression: created_date  < '1588417895000'
+          
+      - debug: 
+          action: count

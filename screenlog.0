@@ -1,0 +1,738 @@
++ '[' -f etl_tool-assembly-0.9.42.jar ']'
++ echo 'jar already present'
+jar already present
++ '[' -f etl_tool-assembly-0.9.42.jar ']'
++ touch time_complete.txt
+++ date +%Y-%m-%d-%H-%M
++ echo 2020-06-17-12-39
++ . ./project.properties
+++ CASSANDRAIP=192.168.1.60
+++ CASSANDRA_USER=cassandra
+++ CASSANDRA_PASS=cassandra
+++ CASSANDRA_KEYSPACE=apac_24052020_test
+++ ETL_TIMESTAMP1=172022667889
+++ ETL_TIMESTAMP2='2020-05-02 14:01:31'
++ '[' -f project.properties ']'
++ '[' -f GracePeriodChanges ']'
++ cat GracePeriodChanges
+ALTER TABLE lead_table WITH gc_grace_seconds = 200;
+TRUNCATE product_archive;
++ script -c 'cqlsh --request-timeout=360000 192.168.1.60 -u cassandra -p cassandra -e "use apac_24052020_test;SOURCE '\''GracePeriodChanges'\''"' GracePeriodChanges.txt
+Script started, file is GracePeriodChanges.txt
+Script done, file is GracePeriodChanges.txt
++ '[' 0 -eq 0 ']'
++ echo 'Done Successfully'
+Done Successfully
++ echo 'Please check grce period of keyspace below'
+Please check grce period of keyspace below
++ script -c 'cqlsh --request-timeout=360000  -u cassandra -p cassandra -e '\''desc keyspace apac_24052020_test'\'''
+Script started, file is typescript
+
+CREATE KEYSPACE apac_24052020_test WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '2'}  AND durable_writes = true;
+
+CREATE TABLE apac_24052020_test.lead_table (
+    id uuid,
+    song_order int,
+    album text,
+    artist text,
+    song_id uuid,
+    title text,
+    PRIMARY KEY (id, song_order)
+) WITH CLUSTERING ORDER BY (song_order ASC)
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 200
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+CREATE TABLE apac_24052020_test.product_archive (
+    id uuid,
+    song_order int,
+    album text,
+    artist text,
+    song_id uuid,
+    title text,
+    PRIMARY KEY (id, song_order)
+) WITH CLUSTERING ORDER BY (song_order ASC)
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+Script done, file is typescript
+++ ls -d1 ETL_1_Discount_Delete/ ETL_2_Lead_All_Delete/ ETL_3_Quote_Delete/ ETL_4_Reactive_Delete/ ETL_5_Report_project_Delete/
+++ tr -d /
+++ sort -n
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_1_Discount_Delete/job.yml ']'
++ cp ETL_1_Discount_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Discount_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: discount
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < '172022667889'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: discount
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_2_Lead_All_Delete/job.yml ']'
++ cp ETL_2_Lead_All_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_All_Lead_Releated_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead_product
+        target: lp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: install_base_product
+        target: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: assignment
+        target: assign
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < '172022667889'
+
+      - filterExpression:
+          expression: created_date  < '172022667889'
+        source: lp
+      
+      - filterExpression:
+          expression: created_date  < '172022667889'
+        source: ibp
+
+      - filterExpression:
+          expression: created_date  < '172022667889'
+        source: assign
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: lead_product
+        source: lp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: install_base_product
+        source: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: assignment
+        source: assign
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_3_Quote_Delete/job.yml ']'
++ cp ETL_3_Quote_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Quote_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: quote
+
+    transform:
+    
+      - filterExpression:
+          expression: created_date  < '172022667889'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: quote
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_4_Reactive_Delete/job.yml ']'
++ cp ETL_4_Reactive_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Reactive_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: reactive_smart_lead_tracker
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: reactive_smart_lead_tracker
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_5_Report_project_Delete/job.yml ']'
++ cp ETL_5_Report_project_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Report_UserandProject_Delete
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        target: reportuser
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP2'
+
+      - filterExpression:
+          expression: is_test_org='FALSE' and org_profile='RESELLER'
+        source: reportuser
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        source: reportuser
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ '[' -f table ']'
+++ cat table
++ for table in '`cat table`'
++ nodetool compact apac_24052020_test lead_table
++ sleep 50
++ '[' -f PostgraceChanges ']'
++ cat PostgraceChanges
+ALTER TABLE lead_table WITH gc_grace_seconds = 86400;
++ script -c 'cqlsh --request-timeout=360000 192.168.1.60 -u cassandra -p cassandra -e "use apac_24052020_test;SOURCE '\''PostgraceChanges'\''"' GracePeriodChanges.txt
+Script started, file is GracePeriodChanges.txt
+Script done, file is GracePeriodChanges.txt
++ '[' 0 -eq 0 ']'
++ echo 'Done Successfully'
+Done Successfully
++ clearsnap apac_24052020_test
++ local ks=apac_24052020_test
++ nodetool clearsnapshot -- apac_24052020_test
+Requested clearing snapshot(s) for [apac_24052020_test]
+++ nodetool listsnapshots
+++ grep -F apac_24052020_test
++ n=
++ rm -rf snaps.txt
++ '[' -f etl_tool-assembly-0.9.42.jar ']'
++ echo 'jar already present'
+jar already present
++ '[' -f etl_tool-assembly-0.9.42.jar ']'
++ touch time_complete.txt
+++ date +%Y-%m-%d-%H-%M
++ echo 2020-06-17-12-46
++ . ./project.properties
+++ CASSANDRAIP=192.168.1.60
+++ CASSANDRA_USER=cassandra
+++ CASSANDRA_PASS=cassandra
+++ CASSANDRA_KEYSPACE=apac_24052020_test
+++ ETL_TIMESTAMP1=172022667889
+++ ETL_TIMESTAMP2='2020-05-02 14:01:31'
++ '[' -f project.properties ']'
++ '[' -f GracePeriodChanges ']'
++ cat GracePeriodChanges
+ALTER TABLE lead_table WITH gc_grace_seconds = 200;
+TRUNCATE product_archive;
++ script -c 'cqlsh --request-timeout=360000 192.168.1.60 -u cassandra -p cassandra -e "use apac_24052020_test;SOURCE '\''GracePeriodChanges'\''"' GracePeriodChanges.txt
+Script started, file is GracePeriodChanges.txt
+Script done, file is GracePeriodChanges.txt
++ '[' 0 -eq 0 ']'
++ echo 'Done Successfully'
+Done Successfully
++ echo 'Please check grce period of keyspace below'
+Please check grce period of keyspace below
++ script -c 'cqlsh --request-timeout=360000  -u cassandra -p cassandra -e '\''desc keyspace apac_24052020_test'\'''
+Script started, file is typescript
+
+CREATE KEYSPACE apac_24052020_test WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '2'}  AND durable_writes = true;
+
+CREATE TABLE apac_24052020_test.lead_table (
+    id uuid,
+    song_order int,
+    album text,
+    artist text,
+    song_id uuid,
+    title text,
+    PRIMARY KEY (id, song_order)
+) WITH CLUSTERING ORDER BY (song_order ASC)
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 200
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+CREATE TABLE apac_24052020_test.product_archive (
+    id uuid,
+    song_order int,
+    album text,
+    artist text,
+    song_id uuid,
+    title text,
+    PRIMARY KEY (id, song_order)
+) WITH CLUSTERING ORDER BY (song_order ASC)
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+Script done, file is typescript
+++ ls -d1 ETL_1_Discount_Delete/ ETL_2_Lead_All_Delete/ ETL_3_Quote_Delete/ ETL_4_Reactive_Delete/ ETL_5_Report_project_Delete/
+++ tr -d /
+++ sort -n
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_1_Discount_Delete/job.yml ']'
++ cp ETL_1_Discount_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Discount_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: discount
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: discount
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_2_Lead_All_Delete/job.yml ']'
++ cp ETL_2_Lead_All_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_All_Lead_Releated_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead_product
+        target: lp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: install_base_product
+        target: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: assignment
+        target: assign
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: lp
+      
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: ibp
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: assign
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: lead_product
+        source: lp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: install_base_product
+        source: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: assignment
+        source: assign
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_3_Quote_Delete/job.yml ']'
++ cp ETL_3_Quote_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Quote_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: quote
+
+    transform:
+    
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: quote
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_4_Reactive_Delete/job.yml ']'
++ cp ETL_4_Reactive_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Delete_Reactive_Data
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: reactive_smart_lead_tracker
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: reactive_smart_lead_tracker
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ for folder in '`ls -d1 */|tr -d "/"|sort -n`'
++ '[' -f ETL_5_Report_project_Delete/job.yml ']'
++ cp ETL_5_Report_project_Delete/job.yml .
++ sed -i s/ETL_TIMESTMAP1/172022667889/g job.yml
++ sed -i s/CASSANDRAIP/192.168.1.60/g job.yml
++ sed -i s/CASSANDRA_KEYSPACE/apac_24052020_test/g job.yml
++ sed -i s/CASSANDRA_USER/cassandra/g job.yml
++ sed -i s/CASSANDRA_PASS/cassandra/g job.yml
++ sed -i 's/ETL_TIMESTMAP2/2020-05-02 14:01:31/g' job.yml
++ cat job.yml
+jobs:
+  - name: Report_UserandProject_Delete
+    conf:
+      spark.cassandra.connection.host: 192.168.1.60
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: cassandra
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        target: reportuser
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP2'
+
+      - filterExpression:
+          expression: is_test_org='FALSE' and org_profile='RESELLER'
+        source: reportuser
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        source: reportuser
++ ls
+ETL_1_Discount_Delete  ETL_4_Reactive_Delete	     GracePeriodChanges      PostgraceChanges	 shell.sh	       table
+ETL_2_Lead_All_Delete  ETL_5_Report_project_Delete   GracePeriodChanges.txt  project.properties  shell.sh_bakcup9june  time_complete.txt
+ETL_3_Quote_Delete     etl_tool-assembly-0.9.42.jar  job.yml		     screenlog.0	 shell.sh_org	       typescript
++ '[' -f table ']'
+++ cat table
++ for table in '`cat table`'
++ nodetool compact apac_24052020_test lead_table
++ sleep 50
++ '[' -f PostgraceChanges ']'
++ cat PostgraceChanges
+ALTER TABLE lead_table WITH gc_grace_seconds = 86400;
++ script -c 'cqlsh --request-timeout=360000 192.168.1.60 -u cassandra -p cassandra -e "use apac_24052020_test;SOURCE '\''PostgraceChanges'\''"' GracePeriodChanges.txt
+Script started, file is GracePeriodChanges.txt
+Script done, file is GracePeriodChanges.txt
++ '[' 0 -eq 0 ']'
++ echo 'Done Successfully'
+Done Successfully
++ clearsnap apac_24052020_test
++ local ks=apac_24052020_test
++ nodetool clearsnapshot -- apac_24052020_test
+Requested clearing snapshot(s) for [apac_24052020_test]
+++ nodetool listsnapshots
+++ grep -F apac_24052020_test
++ n=
++ rm -rf snaps.txt

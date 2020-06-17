@@ -1,0 +1,263 @@
+[main] INFO  Main$  - Remote spark cluster not found!!! Using standalone
+[main] WARN  org.apache.spark.util.Utils  - Your hostname, ubuntu resolves to a loopback address: 127.0.1.1; using 172.16.83.55 instead (on interface ens3)
+[main] WARN  org.apache.spark.util.Utils  - Set SPARK_LOCAL_IP if you need to bind to another address
+[main] INFO  org.apache.spark.SparkContext  - Running Spark version 2.4.0
+[main] WARN  org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[main] INFO  org.apache.spark.SparkContext  - Submitted application: 3a80e44c-b43f-4d6f-b59d-54fc2ffd64a4
+[main] INFO  org.apache.spark.SecurityManager  - Changing view acls to: root
+[main] INFO  org.apache.spark.SecurityManager  - Changing modify acls to: root
+[main] INFO  org.apache.spark.SecurityManager  - Changing view acls groups to: 
+[main] INFO  org.apache.spark.SecurityManager  - Changing modify acls groups to: 
+[main] INFO  org.apache.spark.SecurityManager  - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+[main] INFO  org.apache.spark.util.Utils  - Successfully started service 'sparkDriver' on port 41949.
+[main] INFO  org.apache.spark.SparkEnv  - Registering MapOutputTracker
+[main] INFO  org.apache.spark.SparkEnv  - Registering BlockManagerMaster
+[main] INFO  org.apache.spark.storage.BlockManagerMasterEndpoint  - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[main] INFO  org.apache.spark.storage.BlockManagerMasterEndpoint  - BlockManagerMasterEndpoint up
+[main] INFO  org.apache.spark.storage.DiskBlockManager  - Created local directory at /tmp/blockmgr-bf977c5e-0e31-467a-9cda-9b33aa0158c7
+[main] INFO  org.apache.spark.storage.memory.MemoryStore  - MemoryStore started with capacity 3.1 GB
+[main] INFO  org.apache.spark.SparkEnv  - Registering OutputCommitCoordinator
+[main] INFO  org.spark_project.jetty.util.log  - Logging initialized @5708ms
+[main] INFO  org.spark_project.jetty.server.Server  - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+[main] INFO  org.spark_project.jetty.server.Server  - Started @5900ms
+[main] INFO  org.spark_project.jetty.server.AbstractConnector  - Started ServerConnector@4f5c3fec{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+[main] INFO  org.apache.spark.util.Utils  - Successfully started service 'SparkUI' on port 4040.
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@c35172e{/jobs,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@25e2ab5a{/jobs/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@35e5d0e5{/jobs/job,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@55562aa9{/jobs/job/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@655ef322{/stages,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@7e276594{/stages/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@3401a114{/stages/stage,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@77d2e85{/stages/stage/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@3ecd267f{/stages/pool,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@58ffcbd7{/stages/pool/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@555cf22{/storage,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@6bb2d00b{/storage/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@3c9bfddc{/storage/rdd,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@1a9c38eb{/storage/rdd/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@319bc845{/environment,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@4c5474f5{/environment/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@2f4205be{/executors,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@54e22bdd{/executors/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@3bd418e4{/executors/threadDump,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@544820b7{/executors/threadDump/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@6b98a075{/static,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@37ddb69a{/,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@349c1daf{/api,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@aafcffa{/jobs/job/kill,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@6955cb39{/stages/stage/kill,null,AVAILABLE,@Spark}
+[main] INFO  org.apache.spark.ui.SparkUI  - Bound SparkUI to 0.0.0.0, and started at http://172.16.83.55:4040
+[main] INFO  org.apache.spark.executor.Executor  - Starting executor ID driver on host localhost
+[main] INFO  org.apache.spark.util.Utils  - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36997.
+[main] INFO  org.apache.spark.network.netty.NettyBlockTransferService  - Server created on 172.16.83.55:36997
+[main] INFO  org.apache.spark.storage.BlockManager  - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[main] INFO  org.apache.spark.storage.BlockManagerMaster  - Registering BlockManager BlockManagerId(driver, 172.16.83.55, 36997, None)
+[dispatcher-event-loop-0] INFO  org.apache.spark.storage.BlockManagerMasterEndpoint  - Registering block manager 172.16.83.55:36997 with 3.1 GB RAM, BlockManagerId(driver, 172.16.83.55, 36997, None)
+[main] INFO  org.apache.spark.storage.BlockManagerMaster  - Registered BlockManager BlockManagerId(driver, 172.16.83.55, 36997, None)
+[main] INFO  org.apache.spark.storage.BlockManager  - Initialized BlockManager: BlockManagerId(driver, 172.16.83.55, 36997, None)
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@aa22f1c{/metrics/json,null,AVAILABLE,@Spark}
+[main] INFO  org.apache.spark.sql.internal.SharedState  - Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('file:/opt/Script/ETL_5_Report_project_Delete/spark-warehouse').
+[main] INFO  org.apache.spark.sql.internal.SharedState  - Warehouse path is 'file:/opt/Script/ETL_5_Report_project_Delete/spark-warehouse'.
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@2024293c{/SQL,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@7048f722{/SQL/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@6e0ff644{/SQL/execution,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@58dea0a5{/SQL/execution/json,null,AVAILABLE,@Spark}
+[main] INFO  org.spark_project.jetty.server.handler.ContextHandler  - Started o.s.j.s.ServletContextHandler@7728643a{/static/sql,null,AVAILABLE,@Spark}
+[main] INFO  org.apache.spark.sql.execution.streaming.state.StateStoreCoordinatorRef  - Registered StateStoreCoordinator endpoint
+[main] INFO  etl.provider.impl.YamlProvider  - Loading job - job.yml
+[main] INFO  etl.ETLJob  - start processing job Report_UserandProject_Delete
+[main] INFO  etl.provider.impl.YamlProvider  - updating job Report_UserandProject_Delete status PROCESSING
+[main] INFO  etl.provider.impl.YamlProvider  - updated job Report_UserandProject_Delete status PROCESSING
+[main] INFO  etl.model.extract.Extract  - Extracting org.apache.spark.sql.cassandra to data
+[main] INFO  com.datastax.driver.core.ClockFactory  - Using native clock to generate timestamps.
+[main] WARN  com.datastax.driver.core.NettyUtil  - Found Netty's native epoll transport in the classpath, but epoll is not available. Using NIO instead.
+java.lang.UnsatisfiedLinkError: could not load a native library: netty_transport_native_epoll_x86_64
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:205)
+	at io.netty.channel.epoll.Native.loadNativeLibrary(Native.java:207)
+	at io.netty.channel.epoll.Native.<clinit>(Native.java:65)
+	at io.netty.channel.epoll.Epoll.<clinit>(Epoll.java:33)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.datastax.driver.core.NettyUtil.<clinit>(NettyUtil.java:68)
+	at com.datastax.driver.core.NettyOptions.eventLoopGroup(NettyOptions.java:99)
+	at com.datastax.driver.core.Connection$Factory.<init>(Connection.java:769)
+	at com.datastax.driver.core.Cluster$Manager.init(Cluster.java:1410)
+	at com.datastax.driver.core.Cluster.getMetadata(Cluster.java:399)
+	at com.datastax.spark.connector.cql.CassandraConnector$.com$datastax$spark$connector$cql$CassandraConnector$$createSession(CassandraConnector.scala:161)
+	at com.datastax.spark.connector.cql.CassandraConnector$$anonfun$8.apply(CassandraConnector.scala:154)
+	at com.datastax.spark.connector.cql.CassandraConnector$$anonfun$8.apply(CassandraConnector.scala:154)
+	at com.datastax.spark.connector.cql.RefCountedCache.createNewValueAndKeys(RefCountedCache.scala:32)
+	at com.datastax.spark.connector.cql.RefCountedCache.syncAcquire(RefCountedCache.scala:69)
+	at com.datastax.spark.connector.cql.RefCountedCache.acquire(RefCountedCache.scala:57)
+	at com.datastax.spark.connector.cql.CassandraConnector.openSession(CassandraConnector.scala:79)
+	at com.datastax.spark.connector.cql.CassandraConnector.withSessionDo(CassandraConnector.scala:111)
+	at com.datastax.spark.connector.rdd.partitioner.dht.TokenFactory$.forSystemLocalPartitioner(TokenFactory.scala:98)
+	at org.apache.spark.sql.cassandra.CassandraSourceRelation$.apply(CassandraSourceRelation.scala:272)
+	at org.apache.spark.sql.cassandra.DefaultSource.createRelation(DefaultSource.scala:56)
+	at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:318)
+	at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:167)
+	at etl.model.extract.Extract.execute(Extract.scala:34)
+	at etl.ETLJob$$anonfun$extract$1.apply(ETLJob.scala:80)
+	at etl.ETLJob$$anonfun$extract$1.apply(ETLJob.scala:80)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:750)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1202)
+	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+	at etl.ETLJob.extract(ETLJob.scala:80)
+	at etl.ETLJob.processJob(ETLJob.scala:54)
+	at etl.ETLJob$$anonfun$run$1.apply(ETLJob.scala:20)
+	at etl.ETLJob$$anonfun$run$1.apply(ETLJob.scala:20)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at etl.ETLJob.run(ETLJob.scala:20)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at Main$.executeJob(Main.scala:45)
+	at Main$.main(Main.scala:16)
+	at Main.main(Main.scala)
+	Suppressed: java.lang.UnsatisfiedLinkError: could not load a native library: netty_transport_native_epoll
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:205)
+		at io.netty.channel.epoll.Native.loadNativeLibrary(Native.java:210)
+		... 45 more
+	Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_transport_native_epoll.so
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:161)
+		... 46 more
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll in java.library.path
+			at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1864)
+			at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+			at java.lang.System.loadLibrary(System.java:1122)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:243)
+			at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:124)
+			... 46 more
+			Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll in java.library.path
+				at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1864)
+				at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+				at java.lang.System.loadLibrary(System.java:1122)
+				at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+				at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+				at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+				at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+				at java.lang.reflect.Method.invoke(Method.java:497)
+				at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:263)
+				at java.security.AccessController.doPrivileged(Native Method)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:255)
+				at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:233)
+				... 47 more
+Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_transport_native_epoll_x86_64.so
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:161)
+	... 46 more
+	Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.library.path
+		at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1864)
+		at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+		at java.lang.System.loadLibrary(System.java:1122)
+		at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+		at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:243)
+		at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:124)
+		... 46 more
+		Suppressed: java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.library.path
+			at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1864)
+			at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+			at java.lang.System.loadLibrary(System.java:1122)
+			at io.netty.util.internal.NativeLibraryUtil.loadLibrary(NativeLibraryUtil.java:38)
+			at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+			at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+			at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+			at java.lang.reflect.Method.invoke(Method.java:497)
+			at io.netty.util.internal.NativeLibraryLoader$1.run(NativeLibraryLoader.java:263)
+			at java.security.AccessController.doPrivileged(Native Method)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibraryByHelper(NativeLibraryLoader.java:255)
+			at io.netty.util.internal.NativeLibraryLoader.loadLibrary(NativeLibraryLoader.java:233)
+			... 47 more
+[main] INFO  com.datastax.driver.core.Cluster  - New Cassandra host intseed.yagnaiq.com/172.16.83.55:9042 added
+[main] INFO  com.datastax.driver.core.Cluster  - New Cassandra host /172.16.83.56:9042 added
+[main] INFO  com.datastax.spark.connector.cql.LocalNodeFirstLoadBalancingPolicy  - Added host 172.16.83.56 (dc2)
+[main] INFO  com.datastax.spark.connector.cql.CassandraConnector  - Connected to Cassandra cluster: INT-CASS
+[main] INFO  etl.model.extract.Extract  - Extracting org.apache.spark.sql.cassandra to reportuser
+[main] INFO  etl.model.transform.Transform  - Transforming data to data with filter_expression
+[main] INFO  etl.model.transform.Transform  - Transforming reportuser to reportuser with filter_expression
+[main] INFO  etl.model.load.Load  - Loading data
+[main] WARN  org.apache.spark.util.Utils  - Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.debug.maxToStringFields' in SparkEnv.conf.
+[main] INFO  org.apache.spark.sql.cassandra.CassandraSourceRelation  - Input Predicates: [IsNotNull(created_date)]
+[main] INFO  org.apache.spark.sql.cassandra.CassandraSourceRelation  - Input Predicates: [IsNotNull(created_date)]
+[main] INFO  org.apache.spark.SparkContext  - Starting job: foreachPartition at Load.scala:82
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Got job 0 (foreachPartition at Load.scala:82) with 1 output partitions
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Final stage: ResultStage 0 (foreachPartition at Load.scala:82)
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Parents of final stage: List()
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Missing parents: List()
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Submitting ResultStage 0 (MapPartitionsRDD[12] at foreachPartition at Load.scala:82), which has no missing parents
+[dag-scheduler-event-loop] INFO  org.apache.spark.storage.memory.MemoryStore  - Block broadcast_0 stored as values in memory (estimated size 45.5 KB, free 3.1 GB)
+[dag-scheduler-event-loop] INFO  org.apache.spark.storage.memory.MemoryStore  - Block broadcast_0_piece0 stored as bytes in memory (estimated size 18.3 KB, free 3.1 GB)
+[dispatcher-event-loop-1] INFO  org.apache.spark.storage.BlockManagerInfo  - Added broadcast_0_piece0 in memory on 172.16.83.55:36997 (size: 18.3 KB, free: 3.1 GB)
+[dag-scheduler-event-loop] INFO  org.apache.spark.SparkContext  - Created broadcast 0 from broadcast at DAGScheduler.scala:1161
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[12] at foreachPartition at Load.scala:82) (first 15 tasks are for partitions Vector(0))
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.TaskSchedulerImpl  - Adding task set 0.0 with 1 tasks
+[dispatcher-event-loop-0] INFO  org.apache.spark.scheduler.TaskSetManager  - Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, ANY, 10716 bytes)
+[Executor task launch worker for task 0] INFO  org.apache.spark.executor.Executor  - Running task 0.0 in stage 0.0 (TID 0)
+[Executor task launch worker for task 0] INFO  org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator  - Code generated in 1025.10637 ms
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.ClockFactory  - Using native clock to generate timestamps.
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.policies.DCAwareRoundRobinPolicy  - Using data-center name 'dc1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.Cluster  - New Cassandra host intseed.yagnaiq.com/172.16.83.55:9042 added
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.Cluster  - New Cassandra host /172.16.83.56:9042 added
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.ClockFactory  - Using native clock to generate timestamps.
+[pool-17-thread-1] INFO  com.datastax.spark.connector.cql.CassandraConnector  - Disconnected from Cassandra cluster: INT-CASS
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.Cluster  - New Cassandra host intseed.yagnaiq.com/172.16.83.55:9042 added
+[Executor task launch worker for task 0] INFO  com.datastax.driver.core.Cluster  - New Cassandra host /172.16.83.56:9042 added
+[Executor task launch worker for task 0] INFO  com.datastax.spark.connector.cql.LocalNodeFirstLoadBalancingPolicy  - Added host 172.16.83.56 (dc2)
+[Executor task launch worker for task 0] INFO  com.datastax.spark.connector.cql.CassandraConnector  - Connected to Cassandra cluster: INT-CASS
+[Executor task launch worker for task 0] INFO  org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator  - Code generated in 604.013143 ms
+[Executor task launch worker for task 0] INFO  org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator  - Code generated in 194.837005 ms
+[Executor task launch worker for task 0] INFO  org.apache.spark.executor.Executor  - Finished task 0.0 in stage 0.0 (TID 0). 1204 bytes result sent to driver
+[task-result-getter-0] INFO  org.apache.spark.scheduler.TaskSetManager  - Finished task 0.0 in stage 0.0 (TID 0) in 218729 ms on localhost (executor driver) (1/1)
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - ResultStage 0 (foreachPartition at Load.scala:82) finished in 219.495 s
+[task-result-getter-0] INFO  org.apache.spark.scheduler.TaskSchedulerImpl  - Removed TaskSet 0.0, whose tasks have all completed, from pool 
+[main] INFO  org.apache.spark.scheduler.DAGScheduler  - Job 0 finished: foreachPartition at Load.scala:82, took 219.596901 s
+[main] INFO  etl.model.load.Load  - Loading reportuser
+[main] INFO  org.apache.spark.sql.cassandra.CassandraSourceRelation  - Input Predicates: [IsNotNull(is_test_org), IsNotNull(org_profile), EqualTo(is_test_org,FALSE), EqualTo(org_profile,RESELLER)]
+[main] INFO  org.apache.spark.sql.cassandra.CassandraSourceRelation  - Input Predicates: [IsNotNull(is_test_org), IsNotNull(org_profile), EqualTo(is_test_org,FALSE), EqualTo(org_profile,RESELLER)]
+[main] INFO  org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator  - Code generated in 111.181676 ms
+[main] INFO  org.apache.spark.SparkContext  - Starting job: foreachPartition at Load.scala:82
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Got job 1 (foreachPartition at Load.scala:82) with 1 output partitions
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Final stage: ResultStage 1 (foreachPartition at Load.scala:82)
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Parents of final stage: List()
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Missing parents: List()
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Submitting ResultStage 1 (MapPartitionsRDD[19] at foreachPartition at Load.scala:82), which has no missing parents
+[dag-scheduler-event-loop] INFO  org.apache.spark.storage.memory.MemoryStore  - Block broadcast_1 stored as values in memory (estimated size 43.0 KB, free 3.1 GB)
+[dag-scheduler-event-loop] INFO  org.apache.spark.storage.memory.MemoryStore  - Block broadcast_1_piece0 stored as bytes in memory (estimated size 15.6 KB, free 3.1 GB)
+[dispatcher-event-loop-0] INFO  org.apache.spark.storage.BlockManagerInfo  - Added broadcast_1_piece0 in memory on 172.16.83.55:36997 (size: 15.6 KB, free: 3.1 GB)
+[dag-scheduler-event-loop] INFO  org.apache.spark.SparkContext  - Created broadcast 1 from broadcast at DAGScheduler.scala:1161
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[19] at foreachPartition at Load.scala:82) (first 15 tasks are for partitions Vector(0))
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.TaskSchedulerImpl  - Adding task set 1.0 with 1 tasks
+[dispatcher-event-loop-1] INFO  org.apache.spark.scheduler.TaskSetManager  - Starting task 0.0 in stage 1.0 (TID 1, localhost, executor driver, partition 0, ANY, 10716 bytes)
+[Executor task launch worker for task 1] INFO  org.apache.spark.executor.Executor  - Running task 0.0 in stage 1.0 (TID 1)
+[Executor task launch worker for task 1] INFO  org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator  - Code generated in 53.507349 ms
+[Executor task launch worker for task 1] INFO  com.datastax.driver.core.ClockFactory  - Using native clock to generate timestamps.
+[Executor task launch worker for task 1] INFO  com.datastax.driver.core.policies.DCAwareRoundRobinPolicy  - Using data-center name 'dc1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
+[Executor task launch worker for task 1] INFO  com.datastax.driver.core.Cluster  - New Cassandra host intseed.yagnaiq.com/172.16.83.55:9042 added
+[Executor task launch worker for task 1] INFO  com.datastax.driver.core.Cluster  - New Cassandra host /172.16.83.56:9042 added
+[Executor task launch worker for task 1] INFO  org.apache.spark.executor.Executor  - Finished task 0.0 in stage 1.0 (TID 1). 1298 bytes result sent to driver
+[task-result-getter-1] INFO  org.apache.spark.scheduler.TaskSetManager  - Finished task 0.0 in stage 1.0 (TID 1) in 25872 ms on localhost (executor driver) (1/1)
+[task-result-getter-1] INFO  org.apache.spark.scheduler.TaskSchedulerImpl  - Removed TaskSet 1.0, whose tasks have all completed, from pool 
+[dag-scheduler-event-loop] INFO  org.apache.spark.scheduler.DAGScheduler  - ResultStage 1 (foreachPartition at Load.scala:82) finished in 25.935 s
+[main] INFO  org.apache.spark.scheduler.DAGScheduler  - Job 1 finished: foreachPartition at Load.scala:82, took 25.941787 s
+[main] INFO  etl.ETLJob  - done processing job Report_UserandProject_Delete
+[main] INFO  etl.provider.impl.YamlProvider  - updating job Report_UserandProject_Delete status COMPLETED
+[main] INFO  etl.provider.impl.YamlProvider  - updated job Report_UserandProject_Delete status COMPLETED
+[pool-17-thread-1] INFO  com.datastax.spark.connector.cql.CassandraConnector  - Disconnected from Cassandra cluster: INT-CASS
+[Thread-2] INFO  org.apache.spark.SparkContext  - Invoking stop() from shutdown hook
+[Serial shutdown hooks thread] INFO  com.datastax.spark.connector.util.SerialShutdownHooks  - Successfully executed shutdown hook: Clearing session cache for C* connector
+[Thread-2] INFO  org.spark_project.jetty.server.AbstractConnector  - Stopped Spark@4f5c3fec{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+[Thread-2] INFO  org.apache.spark.ui.SparkUI  - Stopped Spark web UI at http://172.16.83.55:4040
+[dispatcher-event-loop-1] INFO  org.apache.spark.MapOutputTrackerMasterEndpoint  - MapOutputTrackerMasterEndpoint stopped!
+[Thread-2] INFO  org.apache.spark.storage.memory.MemoryStore  - MemoryStore cleared
+[Thread-2] INFO  org.apache.spark.storage.BlockManager  - BlockManager stopped
+[Thread-2] INFO  org.apache.spark.storage.BlockManagerMaster  - BlockManagerMaster stopped
+[dispatcher-event-loop-1] INFO  org.apache.spark.scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint  - OutputCommitCoordinator stopped!
+[Thread-2] INFO  org.apache.spark.SparkContext  - Successfully stopped SparkContext
+[Thread-2] INFO  org.apache.spark.util.ShutdownHookManager  - Shutdown hook called
+[Thread-2] INFO  org.apache.spark.util.ShutdownHookManager  - Deleting directory /tmp/spark-613d8d85-1ccc-4893-a488-685cb9659c63

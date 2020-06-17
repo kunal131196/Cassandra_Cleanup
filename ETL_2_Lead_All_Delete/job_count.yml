@@ -1,0 +1,71 @@
+jobs:
+  - name: Count_All_Lead_Releated_Data
+    conf:
+      spark.cassandra.connection.host: intseed.yagnaiq.com
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: 8XDEN92pzbgpisM54+kQBWZWQE
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: lead_product
+        target: lp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: install_base_product
+        target: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: assignment
+        target: assign
+
+    transform:
+      - debug: 
+          action: count
+      - debug: 
+          action: count
+        source: lp
+      - debug: 
+          action: count
+        source: ibp
+      - debug: 
+          action: count
+        source: assign
+        
+      - filterExpression:
+          expression: created_date  < '1588417895000'
+
+      - filterExpression:
+          expression: created_date  < '1588417895000'
+        source: lp
+      
+      - filterExpression:
+          expression: created_date  < '1588417895000'
+        source: ibp
+
+      - filterExpression:
+          expression: created_date  < '1588417895000'
+        source: assign
+
+      - debug: 
+          action: count
+      - debug: 
+          action: count
+        source: lp
+      - debug: 
+          action: count
+        source: ibp
+      - debug: 
+          action: count
+        source: assign

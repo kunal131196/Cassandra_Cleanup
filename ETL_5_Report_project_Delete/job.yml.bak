@@ -1,0 +1,42 @@
+jobs:
+  - name: Report_UserandProject_Delete
+    conf:
+      spark.cassandra.connection.host: intseed.yagnaiq.com
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: 8XDEN92pzbgpisM54+kQBWZWQE
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        target: reportuser
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < '2020-05-02 14:01:31+0000'
+
+      - filterExpression:
+          expression: is_test_org='FALSE' and org_profile='RESELLER'
+        source: reportuser
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_project
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: apac_24052020_test
+          table: report_user
+        source: reportuser

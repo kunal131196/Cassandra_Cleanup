@@ -1,0 +1,76 @@
+jobs:
+  - name: Delete_All_Lead_Releated_Data
+    conf:
+      spark.cassandra.connection.host: CASSANDRAIP
+      spark.cassandra.auth.username: CASSANDRA_USER
+      spark.cassandra.auth.password: CASSANDRA_PASS
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: lead_product
+        target: lp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: install_base_product
+        target: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: assignment
+        target: assign
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: lp
+      
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: ibp
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+        source: assign
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: lead
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: lead_product
+        source: lp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: install_base_product
+        source: ibp
+
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: assignment
+        source: assign

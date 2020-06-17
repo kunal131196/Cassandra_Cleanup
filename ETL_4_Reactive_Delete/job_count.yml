@@ -1,0 +1,23 @@
+jobs:
+  - name: Delete_Reactive_Data
+    conf:
+      spark.cassandra.connection.host: dryseed.yagnaiq.com
+      spark.cassandra.auth.username: cassandra
+      spark.cassandra.auth.password: 8XDEN92pzbgpisM54+kQBWZWQE
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: apac_01032020
+          table: reactive_smart_lead_tracker
+
+    transform:
+      - debug: 
+          action: count
+
+      - filterExpression:
+          expression: created_date  < '1586097046612'
+          
+      - debug: 
+          action: count

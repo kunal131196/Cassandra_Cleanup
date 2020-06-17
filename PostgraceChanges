@@ -1,0 +1,9 @@
+ALTER TABLE discount WITH gc_grace_seconds = 86400;
+ALTER TABLE quote WITH gc_grace_seconds = 86400;
+ALTER TABLE lead WITH gc_grace_seconds = 86400;
+ALTER TABLE lead_product WITH gc_grace_seconds = 86400;
+ALTER TABLE install_base_product WITH gc_grace_seconds = 86400;
+ALTER TABLE assignment WITH gc_grace_seconds = 86400;
+ALTER TABLE reactive_smart_lead_tracker WITH gc_grace_seconds = 86400;
+ALTER TABLE report_project WITH gc_grace_seconds = 86400;
+ALTER TABLE report_user WITH gc_grace_seconds = 86400 ;

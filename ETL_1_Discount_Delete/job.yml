@@ -1,0 +1,25 @@
+jobs:
+  - name: Delete_Discount_Data
+    conf:
+      spark.cassandra.connection.host: CASSANDRAIP
+      spark.cassandra.auth.username: CASSANDRA_USER
+      spark.cassandra.auth.password: CASSANDRA_PASS
+
+    extract:
+
+      - format: org.apache.spark.sql.cassandra
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: discount
+
+    transform:
+
+      - filterExpression:
+          expression: created_date  < 'ETL_TIMESTAMP1'
+
+    load:
+      - format: org.apache.spark.sql.cassandra
+        mode: Delete
+        options:
+          keyspace: CASSANDRA_KEYSPACE
+          table: discount

@@ -1,0 +1,67 @@
+#!/bin/bash
+
+if [ -f etl_tool-assembly-0.9.42.jar ] ;then
+	echo "jar already present"
+else
+	wget http://apk-repo.yagnaiq.com/etl/etl_tool-assembly-0.9.42.jar
+fi
+
+if [ -f etl_tool-assembly-0.9.42.jar ] ;then
+
+touch time_complete.txt
+
+echo $(date +%Y-%m-%d-%H-%M) > time_complete.txt
+
+. ./project.properties
+
+if [ -f project.properties ]; then
+
+if [ -f GracePeriodChanges ]; then
+
+cat GracePeriodChanges
+
+script -c "cqlsh --request-timeout=360000 $CASSANDRAIP -u $CASSANDRA_USER -p $CASSANDRA_PASS -e \"use $CASSANDRA_KEYSPACE;SOURCE 'GracePeriodChanges'\"" GracePeriodChanges.txt
+if [ $? -eq 0 ]; then
+	echo "Done Successfully"
+else
+	echo "Failure"
+	exit 1
+fi
+else
+	echo "Please check GracePeriodChanges cql queries not present"
+fi
+for folder in `ls -d1 */|tr -d "/"|sort -n`
+do
+	if [ -f $folder/job.yml ]; then
+		cp $folder/job.yml .
+		sed -i "s/ETL_TIMESTAMP1/$ETL_TIMESTAMP1/g" job.yml
+		sed -i "s/CASSANDRAIP/$CASSANDRAIP/g" job.yml
+		sed -i "s/CASSANDRA_KEYSPACE/$CASSANDRA_KEYSPACE/g" job.yml
+		sed -i "s/CASSANDRA_USER/$CASSANDRA_USER/g" job.yml
+		sed -i "s/CASSANDRA_PASS/$CASSANDRA_PASS/g" job.yml
+                sed -i "s/ETL_TIMESTMAP2/$ETL_TIMESTAMP2/g" job.yml
+		cat job.yml && ls
+		script -c "java -jar etl_tool-assembly-0.9.42.jar " $folder.txt
+		if [ $? -eq 0 ]; then
+	        	echo "Done Successfully"
+		else
+	        	echo "Failure"
+	        	exit 1
+		fi
+		checkerror=`cat $folder.txt|grep ERROR|wc -l`
+	        if [ $checkerror != "0" ]; then
+        	        echo "Getting some error while running $folder"
+	                exit 1
+        	fi
+
+	else
+		echo "Please check job yml not present for $folder"
+	fi
+done
+else
+	echo "Please check property file not present"
+	exit 1
+fi
+        echo "Please check jar not download properly"
+        exit 1
+fi
